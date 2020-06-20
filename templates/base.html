@@ -7,8 +7,9 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
     <!-- Bootstrap CSS -->
-    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet"/>
+    <!-- <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet"/> -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css">
     <!--- Static CSS---->
     <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -16,40 +17,44 @@
 </head>
 <body>
 <!-- Image and text -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">
-        <!-- <img src="{% static 'pics/logo.png' %}" width="30" height="30" class="d-inline-block align-top"
-             alt="">Swype</a> -->
-    <button
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            class="navbar-toggler"
-            data-target="#navbarSupportedContent"
-            data-toggle="collapse"
-            type="button">
-        <span class="navbar-toggler-icon"> </span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="mr-auto"></div>
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/accounts/logout/">Logout</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/accounts/register/">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/accounts/login/">Login</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">Swype</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li> -->
+      {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="/accounts/logout/">Logout</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/accounts/register/">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/accounts/login/">Login</a>
+        </li>
+      {% endif %}
+    </ul>
+    <!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+  </div>
 </nav>
 <div>
     {% block content %}
