@@ -10,9 +10,19 @@
     <title>Home | Swype</title>
 </head>
 <body>
-        Hello
-<a href="/profile/employee">I'm an Employee</a>
-<a href="/profile/employer">I'm an Employer</a>
+
+<div>
+    <div class="parentDiv">
+        <div class="row parentCard" >
+          <div class="col-sm mainCard employee" onclick="location.href='/profile/employee';" style="cursor: pointer;">
+            <h1 class="mainText">I am employe</h1>
+          </div>
+          <div class="col-sm mainCard employer" onclick="location.href='/profile/employer';" style="cursor: pointer;">
+            I am Employer
+          </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
