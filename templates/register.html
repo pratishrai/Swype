@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register</title>
+</head>
+<body class="text-center">
+<form method="POST" class="form-signin">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+    <input name="first_name" type="text" class="form-control" placeholder="First Name"><br>
+    <input name="last_name" type="text" class="form-control" placeholder="Last Name"><br>
+    <input name="username" type="text" class="form-control" placeholder="Username"><br>
+    <input name="email" type="email" class="form-control" placeholder="Email"><br>
+    <input name="password1" type="password" class="form-control" placeholder="Password"><br>
+    <input name="password2" type="password" class="form-control" placeholder="Confirm Password"><br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" href="/newuser/">Register</button>
+</form>
+
+<div>
+    {% for message in messages %}
+    <h3>{{ message }}</h3>
+    {% endfor %}
+</div>
+</body>
+</html>
+{% endblock %}
