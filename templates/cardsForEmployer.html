@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="jumbotron jumbotron-fluid bg-primary text-light" id="card"></div>
+  <button type="button" name="button" id="nextCard">Next</button>
+  <script type="text/javascript">
+    var cards = "{{ cards|escapejs }}";
+    cards = JSON.parse(cards);
+  </script>
+  <script src="/static/js/cardsForEmployee.js" charset="utf-8"></script>
+{% endblock %}
