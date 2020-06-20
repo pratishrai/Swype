@@ -1,11 +1,10 @@
 const card = document.getElementById('card');
-var cards = JSON.parse({{ cards }});
 var numCards = cards.length;
 
 var j = 1;
 
 const noCardToShowHTML = `
-  <h1>No more cards to show :/</h1>
+  <h3>No more cards to show :/</h3>
   <p>You've browsed through 'em all! Try refreshing to see if there's anything new</p>
 `
 
@@ -23,14 +22,15 @@ const parseEmployeeCard = (card) => {
     }
     value += "</ul>";
   }
-  value += "<h3>Bio</h3>";
+  value += "<h3>Bio:</h3>";
   value += `<p>${card.bio}</p>`
+  return value;
 };
 
 if (cards.length === 0) {
   card.innerHTML = noCardToShowHTML;
 } else {
-  card.innerHTML = parseCard(cards[0]);
+  card.innerHTML = parseEmployeeCard(cards[0]);
 }
 
 document.getElementById('nextCard').onclick = () => {
@@ -38,5 +38,5 @@ document.getElementById('nextCard').onclick = () => {
     card.innerHTML = noCardToShowHTML;
   }
   j = (j++) % numCards;
-  card.innerHTML = parseCard(cards[0]);
+  card.innerHTML = parseEmployeeCard(cards[0]);
 };

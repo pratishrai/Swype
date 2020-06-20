@@ -39,3 +39,8 @@
     padding: 20px;
     box-shadow: 0 0 12px rgba(228, 228, 228, 0.6);
 }
+
+.jumbotron {
+  min-height: 2000px;
+  min-width: 5000px;
+}

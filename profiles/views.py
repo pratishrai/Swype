@@ -26,13 +26,13 @@ def employee(request):
 
     elif request.method == 'GET':
         if request.user.is_authenticated:
-            if hasattr(request.user, 'employee'):
-                if hasattr(request.user.employee, 'tags'):
-                    qs = Employer.objects.filter(tags__in=request.user.employee.tags)
+            if hasattr(request.user, 'employee_profile'):
+                if hasattr(request.user.employee_profile, 'tags') and request.user.employee_profile.tags.all().exists():
+                    qs = Employer.objects.filter(tags__in=request.user.employee_profile.tags.all())
                 else:
                     qs = Employer.objects.all()
                 cards = [get_employer_dict(employer) for employer in qs]
-                return render(request, 'cards.html', {'cards': cards})
+                return render(request, 'cards.html', {'cards': json.dumps(cards)})
             else:
                 render(request, 'employee.html')
         else:
@@ -62,13 +62,13 @@ def employer(request):
         new_company.save()
         return redirect('employer')
     elif request.method == 'GET':
-        if hasattr(request.user, 'employer'):
-            if hasattr(request.user.employer, 'tags'):
-                qs = Employee.objects.filter(tags__in=request.user.employer.tags)
+        if hasattr(request.user, 'employer_profile'):
+            if hasattr(request.user.employer_profile, 'tags') and request.user.employer_profile.tags.all().exists():
+                qs = Employee.objects.filter(tags__in=request.user.employer_profile.tags.all())
             else:
                 qs = Employee.objects.all()
             cards = [get_employee_dict(employee) for employee in qs]
-            return render(request, 'cards.html', {'cards': cards})
+            return render(request, 'cardsForEmployer.html', {'cards': json.dumps(cards)})
         else:
             return render(request, 'employer.html')
     else:
