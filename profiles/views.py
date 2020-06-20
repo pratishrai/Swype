@@ -2,9 +2,9 @@ import json
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.decorators import require_GET
 
 from profiles.models import Employee, Employer, Company, Tag
+from profiles.utils import get_employee_dict, get_employer_dict
 
 # Index Function
 def index(request):
@@ -31,12 +31,15 @@ def employee(request):
                     qs = Employer.objects.filter(tags__in=request.user.employee.tags)
                 else:
                     qs = Employer.objects.all()
-                cards = [{'name': employer.name, 'company': employer.company.name, 'skills': list(getattr(employer, 'skills', []))}]
-                return render(request, 'cards.html')
+                cards = [get_employer_dict(employer) for employer in qs]
+                return render(request, 'cards.html', {'cards': cards})
             else:
                 render(request, 'employee.html')
         else:
             return redirect('/accounts/register')
+
+    else:
+        return redirect('/')
 
 
 def employer(request):
@@ -58,5 +61,15 @@ def employer(request):
         new_employer.save()
         new_company.save()
         return redirect('employer')
+    elif request.method == 'GET':
+        if hasattr(request.user, 'employer'):
+            if hasattr(request.user.employer, 'tags'):
+                qs = Employee.objects.filter(tags__in=request.user.employer.tags)
+            else:
+                qs = Employee.objects.all()
+            cards = [get_employee_dict(employee) for employee in qs]
+            return render(request, 'cards.html', {'cards': cards})
+        else:
+            return render(request, 'employer.html')
     else:
-        return render(request, 'employer.html')
+        return redirect('/')

@@ -9,7 +9,7 @@ const noCardToShowHTML = `
   <p>You've browsed through 'em all! Try refreshing to see if there's anything new</p>
 `
 
-const parseCard = (card) => {
+const parseEmployeeCard = (card) => {
   var value = `
     <h1>${card.name}</h1>
   `;
