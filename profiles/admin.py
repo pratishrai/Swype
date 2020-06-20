@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from profiles.models import Employee, Employer, Company, Tag
+
+admin.register(Employee)
+admin.register(Employer)
+admin.register(Company)
+admin.register(Tag)
