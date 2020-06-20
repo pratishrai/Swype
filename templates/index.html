@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block content %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,5 +11,9 @@
 </head>
 <body>
         Hello
+<a href="/profile/employee">I'm an Employee</a>
+<a href="/profile/employer">I'm an Employer</a>
+
 </body>
 </html>
+{% endblock %}
