@@ -1,5 +1,8 @@
+import json
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.decorators import require_GET
 
 from profiles.models import Employee, Employer, Company, Tag
 
@@ -20,8 +23,20 @@ def employee(request):
                                 bio=bio, github_url=github_url, linkedin_url=linkedin_url)
         new_employer.save()
         return redirect('employee')
-    else:
-        return render(request, 'employee.html')
+
+    elif request.method == 'GET':
+        if request.user.is_authenticated:
+            if hasattr(request.user, 'employee'):
+                if hasattr(request.user.employee, 'tags'):
+                    qs = Employer.objects.filter(tags__in=request.user.employee.tags)
+                else:
+                    qs = Employer.objects.all()
+                cards = [{'name': employer.name, 'company': employer.company.name, 'skills': list(getattr(employer, 'skills', []))}]
+                return render(request, 'cards.html')
+            else:
+                render(request, 'employee.html')
+        else:
+            return redirect('/accounts/register')
 
 
 def employer(request):
