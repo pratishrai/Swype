@@ -32,9 +32,9 @@
 }
 .mainCard{
     transition: all 2s ease 0s;
-    background-color: white;
-    margin: 70px;
-    box-shadow: 0 0 18px rgba(228, 228, 228, 0.6);
+    background-color: rgb(44, 44, 44);
+    margin: 120px;
+    box-shadow: 0 0 18px rgba(66, 66, 66, 0.6);
 }
 .mainCard:hover{
     top: -20px;
@@ -51,4 +51,10 @@
     color: #007bff;
     padding: 20px;
     box-shadow: 0 0 12px rgba(228, 228, 228, 0.6);
+}
+.parentDiv{
+    background-color: rgb(0, 0, 0) !important;
+}
+.parentCard{
+    background-color: rgb(0, 0, 0) !important;
 }
