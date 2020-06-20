@@ -17,21 +17,32 @@
     height: 200px;
 }
 .mainText{
+    font-family: 'Roboto', sans-serif;
     font-size: 50px;
-    color: white;
+    color:#007bff;
 }
 .parentDiv{
+    padding-left: 150px;
+    padding-right: 150px;
     text-align: center;
 }
 .parentCard{
-    background-color: #6cb3ff !important;
-}
-.employee{
-    margin: 10px;
-    background-color: white;
     width: 100%;
+    background-color: white !important;
 }
 .mainCard{
+    transition: all 2s ease 0s;
+    background-color: white;
+    margin: 70px;
+    box-shadow: 0 0 18px rgba(228, 228, 228, 0.6);
+}
+.mainCard:hover{
+    top: -20px;
+    transition: all 2s ease 0s;
+    box-shadow: 0 0 30px rgba(228, 228, 228, 0.6);
+}
+.cardImage{
+    padding: 50px;
+    width: 100%;
     height: 500px;
-    padding: 40px;
 }
