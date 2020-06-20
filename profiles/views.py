@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-# Create your views here.
-from . models import Employee, Employer, Company, Tag
 
+from profiles.models import Employee, Employer, Company, Tag
 
 # Index Function
 def index(request):
@@ -40,7 +39,7 @@ def employer(request):
         new_employer = Employer(name=name, photo=photo,
                               company=company)
         new_company = Company(name=company_name, photo=company_photo, bio=company_bio, website_url=company_website, linkedin_url=company_linkdin, creator = company_creator)
-        
+
         new_employer.save()
         new_company.save()
         return redirect('employer')
