@@ -10,7 +10,11 @@ class Employee(models.Model):
     bio = models.TextField()
     github_url = models.CharField(max_length=300, blank=True)
     linkedin_url = models.CharField(max_length=1000, blank=True)
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name="employee_profile")
+    user = models.OneToOneField(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name="employee_profile",
+    )
 
 
 class Company(models.Model):
@@ -19,14 +23,22 @@ class Company(models.Model):
     bio = models.TextField()
     website_url = models.CharField(max_length=1000, blank=True)
     linkedin_url = models.CharField(max_length=1000, blank=True)
-    creator = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="companies")
+    creator = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name="companies",
+    )
 
 
 class Employer(models.Model):
     name = models.CharField(max_length=60)
     photo = models.ImageField(upload_to=photo_path, blank=True)
-    company = models.OneToOneField(Company)
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name="employer_profile")
+    company = models.OneToOneField(Company, null=True, on_delete=models.SET_NULL)
+    user = models.OneToOneField(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name="employer_profile",
+    )
 
 
 class Tag(models.Model):
