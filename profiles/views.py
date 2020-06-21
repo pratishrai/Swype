@@ -17,14 +17,20 @@ def home(request):
 
 def employee(request):
     if request.method == 'POST':
-        name = request.POST["name"]
-        photo = request.POST["photo"]
-        bio = request.POST["bio"]
-        github_url = request.POST["github_url"]
-        linkedin_url = request.POST["linkedin_url"]
+        name = request.POST.get("name")
+        photo = request.POST.get("photo")
+        bio = request.POST.get("bio")
+        github_url = request.POST.get("github_url", "")
+        linkedin_url = request.POST.get("linkedin_url", "")
 
-        new_employee = Employee(name=name, photo=photo,
-                                bio=bio, github_url=github_url, linkedin_url=linkedin_url, user=request.user)
+        new_employee = Employee(
+            name=name,
+            photo=photo,
+            bio=bio,
+            github_url=github_url,
+            linkedin_url=linkedin_url,
+            user=request.user,
+        )
         new_employee.save()
         return redirect('employee')
 
