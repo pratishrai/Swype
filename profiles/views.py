@@ -47,33 +47,52 @@ def employee(request):
 
 
 def employer(request):
-    if request.method == 'POST':
-        name = request.POST["name"]
-        photo = request.POST["photo"]
-        company = request.POST["company"]
-        company_name = request.POST["company_name"]
-        company_photo = request.POST["company_photo"]
-        company_bio = request.POST["company_bio"]
-        company_website = request.POST["company_website"]
-        company_linkdin = request.POST["company_linkedin"]
-        company_creator = request.POST["company_creator"]
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            name = request.POST["name"]
+            photo = request.POST.get("photo")
+            company_id = request.POST.get("companyId")
+            new_employer = Employer(
+                name=name,
+                photo=photo,
+                company=Company.objects.get(id=company_id) if company_id else None,
+                user=request.user
+            )
+            new_employer.save()
+            return redirect('employer')
 
-        new_employer = Employer(name=name, photo=photo,
-                              company=company)
-        new_company = Company(name=company_name, photo=company_photo, bio=company_bio, website_url=company_website, linkedin_url=company_linkdin, creator = company_creator)
-
-        new_employer.save()
-        new_company.save()
-        return redirect('employer')
-    elif request.method == 'GET':
-        if hasattr(request.user, 'employer_profile'):
-            if hasattr(request.user.employer_profile, 'tags') and request.user.employer_profile.tags.all().exists():
-                qs = Employee.objects.filter(tags__in=request.user.employer_profile.tags.all())
+        elif request.method == 'GET':
+            if hasattr(request.user, 'employer_profile'):
+                if hasattr(request.user.employer_profile, 'tags') and request.user.employer_profile.tags.all().exists():
+                    qs = Employee.objects.filter(tags__in=request.user.employer_profile.tags.all())
+                else:
+                    qs = Employee.objects.all()
+                cards = [get_employee_dict(employee) for employee in qs]
+                return render(request, 'cardsForEmployer.html', {'cards': json.dumps(cards)})
             else:
-                qs = Employee.objects.all()
-            cards = [get_employee_dict(employee) for employee in qs]
-            return render(request, 'cardsForEmployer.html', {'cards': json.dumps(cards)})
+                return render(request, 'employer.html', {'companies': [{'id': company.id, 'name': company.name} for company in Company.objects.all()]})
         else:
-            return render(request, 'employer.html')
+            return redirect('/')
+    else:
+        return redirect('/')
+
+
+def registerCompany(request):
+    if request.user.is_authenticated:
+        if request.method == "GET":
+            return render(request, "registerCompany.html")
+        elif request.method == "POST":
+            company = Company(
+                name=request.POST.get("nameOfCompany"),
+                bio=request.POST.get("bioOfCompany"),
+                photo=request.POST.get("logoOfCompany"),
+                website_url=request.POST.get("websiteUrl", ""),
+                linkedin_url=request.POST.get("linkedinUrl", ""),
+                creator=request.user
+            )
+            company.save()
+            return redirect('/')
+        else:
+            return redirect('/')
     else:
         return redirect('/')

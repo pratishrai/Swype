@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h1>Register a Company</h1>
+  <hr>
+  <form method="POST">
+    {% csrf_token %}
+    <fieldset>
+      <legend>Company Details</legend>
+      <div class="form-group">
+        <label for="nameOfCompany">Company Name</label>
+        <input type="text" class="form-control" id="nameOfCompany" name="nameOfCompany" maxlength="60" placeholder="Enter company name" required>
+      </div>
+      <div class="form-group">
+        <label for="bioOfCompany">About your company</label>
+        <input type="text" class="form-control" id="bioOfCompany" name="bioOfCompany" placeholder="What should future employees know about your company?" required>
+      </div>
+      <div class="form-group">
+        <label for="websiteUrl">Company Website</label>
+        <input type="url" class="form-control" id="websiteUrl" name="websiteUrl" placeholder="https://example.com" maxlength="1000" >
+      </div>
+      <div class="form-group">
+        <label for="linkedinUrl">The LinkedIn URL of your company</label>
+        <input type="url" class="form-control" id="companyUrl" name="companyUrl" placeholder="https://linkedin.com/in/your-company" maxlength="1000" >
+      </div>
+      <input name="company_photo" type="file" class="form-control" placeholder="Phote"><br>
+      <div class="form-group">
+        <label for="logoOfCompany">The company logo</label>
+        <input type="file" class="form-control-file" id="logoOfCompany" name="logoOfCompany" aria-describedby="fileHelp">
+        <small id="fileHelp" class="form-text text-muted">Upload your company logo!</small>
+      </div>
+    </fieldset>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" href="/dashboard/">Submit</button>
+  </form>
+  <br><br><br><br>
+{% endblock %}
