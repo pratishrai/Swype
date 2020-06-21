@@ -26,19 +26,28 @@ const parseEmployerCard = (givenCard) => {
     }
     value += `</ul>`;
   }
+  value += `<button class="btn btn-primary" type="button" name="button" onclick="nextHandler()">Next</button>`
   return value;
 };
 
 if (cards.length === 0) {
   card.innerHTML = noCardToShowHTML;
 } else {
-  card.innerHTML = parseEmployerCard(cards[0]);
+  card.innerHTML = `
+      <div class="jumbotron jumbotron-fluid bg-primary text-light">
+        ${parseEmployerCard(cards[0])}
+      </div>
+    `;
 }
 
-document.getElementById('nextCard').onclick = () => {
+const nextHandler = () => {
   if (numCards === 0) {
     card.innerHTML = noCardToShowHTML;
   }
   j = (j++) % numCards;
-  card.innerHTML = parseEmployerCard(cards[0]);
+  card.innerHTML = `
+    <div class="jumbotron jumbotron-fluid bg-primary text-light">
+      ${parseEmployerCard(cards[j])}
+    </div>
+  `;
 };
