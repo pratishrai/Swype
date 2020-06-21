@@ -50,8 +50,8 @@
     background-color: rgb(24, 24, 24) !important;
 }
 .jumbotron {
-  min-height: 2000px;
-  min-width: 5000px;
+  min-height: 100%;
+  min-width: 100%;
 }
 
 .home{
