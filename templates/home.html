@@ -5,15 +5,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
     <title>Home | Swype</title>
 </head>
 <body>
-    <div class="col">
+    <div class="row home">
+    <div class="col-md-6">
         <h4>----- Creativity and Collaboration</h4>
-        <h1>Work Remotely From Your Home or Places</h1>
+        <h1>Work Remotely<br>From Your Home <br>or Places</h1>
     </div>
-    <div class="col">
-        <img src="https://elements-cover-images-0.imgix.net/1d9693b5-25d7-400d-8dff-e49f9658337a?auto=compress%2Cformat&fit=max&w=1019&s=32ee99d74b6fa869c92d14ab6f7f182d" alt="">
+    <div class="col-md-6">
+        <img src="{% static 'img/remote.jpg' %}" alt="Remote Work">
+    </div>
     </div>
 </body>
 </html>
