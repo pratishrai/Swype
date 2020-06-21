@@ -79,10 +79,15 @@ WSGI_APPLICATION = 'Swype.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'lkwebfgp',
+        'USER': 'lkwebfgp',
+        'PASSWORD': 'NDRxpTK5Xz65iF4ZBRTCC2b4orIrqNg2',
+        'HOST': 'rogue.db.elephantsql.com',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation

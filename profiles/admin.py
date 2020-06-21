@@ -6,3 +6,4 @@ admin.site.register(Employee)
 admin.site.register(Employer)
 admin.site.register(Company)
 admin.site.register(Tag)
+admin.site.site_header = "Swype Administration"
