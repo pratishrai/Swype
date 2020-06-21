@@ -1,7 +1,7 @@
 import json
 
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from profiles.models import Employee, Employer, Company, Tag
 from profiles.utils import get_employee_dict, get_employer_dict
@@ -98,6 +98,48 @@ def registerCompany(request):
             )
             company.save()
             return redirect('/')
+        else:
+            return redirect('/')
+    else:
+        return redirect('/')
+
+
+def markInterestOfEmployee(request):
+    if request.user.is_authenticated:
+        if request.method == "GET":
+            employee_id = rqeuest.user.employee.id
+            employer_id = request.GET.get("employer_id")
+            if not (employee_id and employer_id):
+                return redirect('/')
+            employer = Employer.objects.get(id=employer_id)
+            employee = Employee.objects.get(id=employee_id)
+            employer.interested_employees.add(employee)
+            employer.save()
+            if employer in employee.interested_employers.all():
+                return JsonResponse({'match': True})
+            else:
+                return JsonResponse({'match': False})
+        else:
+            return redirect('/')
+    else:
+        return redirect('/')
+
+
+def markInterestOfEmployer(request):
+    if request.user.is_authenticated:
+        if request.method == "GET":
+            employer_id = request.user.employer.id
+            employee_id = rqeuest.GET.get("employee_id")
+            if not (employee_id and employer_id):
+                return redirect('/')
+            employee = Employee.objects.get(id=employee_id)
+            employer = Employer.objects.get(id=employer_id)
+            employee.interested_employers.add(employer)
+            employee.save()
+            if employee in employer.interested_employees.all():
+                return JsonResponse({'match': True})
+            else:
+                return JsonResponse({'match': False})
         else:
             return redirect('/')
     else:

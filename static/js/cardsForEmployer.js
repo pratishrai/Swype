@@ -1,5 +1,6 @@
 const card = document.getElementById('card');
 var numCards = cards.length;
+var currentCardId = null;
 
 var j = 1;
 
@@ -24,8 +25,9 @@ const parseEmployeeCard = (givenCard) => {
   }
   value += "<h3>Bio:</h3>";
   value += `<p>${givenCard.bio}</p>`
-  value += `<button class="btn btn-primary" type="button" name="button" onclick="nextHandler()">Next</button>`
-  value += `<button class="btn btn-primary" type="button" name="button" onclick="interestedHandler()">Interested 👍</button>`
+  value += `<button class="btn btn-secondary" type="button" name="button" onclick="nextHandler()">Next</button>`
+  value += `<button class="btn btn-success" type="button" name="button" onclick="interestedHandler()">Interested 👍</button>`
+  currentCardId = givenCard.id;
   return value;
 };
 
@@ -56,5 +58,12 @@ const interestedHandler = () => {
   cards.splice(j, 1);
   numCards--;
   j--;
+  fetch(window.location.href + `/markInterest?employee_id=${currentCardId}`)
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      return error;
+    });
   nextHandler();
 };
