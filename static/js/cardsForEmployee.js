@@ -8,23 +8,31 @@ const noCardToShowHTML = `
   <p>You've browsed through 'em all! Try refreshing to see if there's anything new</p>
 `
 
-const parseEmployerCard = (card) => {
+const parseEmployerCard = (givenCard) => {
   var value = `
-    <h1>${card.name}</h1>
+    <h1>${givenCard.name}</h1>
   `;
-  if (card.company) {
-    value += `<h3>${card.company.name}</h3>`
+  if (givenCard.company) {
+    value += `<h3>Company: ${givenCard.company.name}</h3>`
     value += `
       <h3>Bio: </h3>
-      <p>${card.company.bio}</p>
+      <p>${givenCard.company.bio}</p>
     `
   }
+  if (givenCard.tags) {
+    value += `<h3>Looking for:</h3>\n<ul>\n`;
+    for (var i = 0; i < givenCard.tags.length; i++) {
+      value += `<li>${givenCard.tags[i]}</li>\n`;
+    }
+    value += `</ul>`;
+  }
+  return value;
 };
 
 if (cards.length === 0) {
   card.innerHTML = noCardToShowHTML;
 } else {
-  card.innerHTML = parseEmployeeCard(cards[0]);
+  card.innerHTML = parseEmployerCard(cards[0]);
 }
 
 document.getElementById('nextCard').onclick = () => {
@@ -32,5 +40,5 @@ document.getElementById('nextCard').onclick = () => {
     card.innerHTML = noCardToShowHTML;
   }
   j = (j++) % numCards;
-  card.innerHTML = parseEmployeeCard(cards[0]);
+  card.innerHTML = parseEmployerCard(cards[0]);
 };

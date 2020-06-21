@@ -8,22 +8,22 @@ const noCardToShowHTML = `
   <p>You've browsed through 'em all! Try refreshing to see if there's anything new</p>
 `
 
-const parseEmployeeCard = (card) => {
+const parseEmployeeCard = (givenCard) => {
   var value = `
-    <h1>${card.name}</h1>
+    <h1>${givenCard.name}</h1>
   `;
-  if (card.skills) {
+  if (givenCard.skills) {
     value += `
       <h3>Skills:</h3>
       <ul>
     `;
-    for (i = 0; i < card.skills.length; i++) {
-      value += `<li>${card.skills[i]}</li>\n`;
+    for (i = 0; i < givenCard.skills.length; i++) {
+      value += `<li>${givenCard.skills[i]}</li>\n`;
     }
     value += "</ul>";
   }
   value += "<h3>Bio:</h3>";
-  value += `<p>${card.bio}</p>`
+  value += `<p>${givenCard.bio}</p>`
   return value;
 };
 
