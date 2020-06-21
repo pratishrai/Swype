@@ -12,13 +12,13 @@ const parseEmployeeCard = (givenCard) => {
   var value = `
     <h1>${givenCard.name}</h1>
   `;
-  if (givenCard.skills) {
+  if (givenCard.tags) {
     value += `
       <h3>Skills:</h3>
       <ul>
     `;
-    for (i = 0; i < givenCard.skills.length; i++) {
-      value += `<li>${givenCard.skills[i]}</li>\n`;
+    for (i = 0; i < givenCard.tags.length; i++) {
+      value += `<li>${givenCard.tags[i]}</li>\n`;
     }
     value += "</ul>";
   }
