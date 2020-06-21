@@ -16,7 +16,7 @@ const parseEmployerCard = (card) => {
     value += `<h3>${card.company.name}</h3>`
     value += `
       <h3>Bio: </h3>
-      <p>${company.bio}</p>
+      <p>${card.company.bio}</p>
     `
   }
 };
