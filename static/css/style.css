@@ -17,11 +17,14 @@
     width: 100%;
     background-color: white !important;
 }
+.card-title{
+    color: white;
+}
 .mainCard{
     transition: all 2s ease 0s;
-    background-color: white;
-    margin: 70px;
-    box-shadow: 0 0 18px rgba(228, 228, 228, 0.6);
+    background-color: rgb(58, 58, 58);
+    margin: 120px;
+    box-shadow: 0 0 18px rgba(66, 66, 66, 0.6);
 }
 .mainCard:hover{
     top: -20px;
@@ -37,9 +40,15 @@
 .form-signin{
     color: #007bff;
     padding: 20px;
+    background-color: rgb(24, 24, 24);
     box-shadow: 0 0 12px rgba(228, 228, 228, 0.6);
 }
-
+.parentDiv{
+    background-color: rgb(24, 24, 24) !important;
+}
+.parentCard{
+    background-color: rgb(24, 24, 24) !important;
+}
 .jumbotron {
   min-height: 2000px;
   min-width: 5000px;
