@@ -36,7 +36,7 @@ def employee(request):
                 else:
                     qs = Employer.objects.all()
                 cards = [get_employer_dict(employer) for employer in qs]
-                return render(request, 'cards.html', {'cards': json.dumps(cards)})
+                return render(request, 'cardsForEmployee.html', {'cards': json.dumps(cards)})
             else:
                 return render(request, 'employee.html')
         else:
