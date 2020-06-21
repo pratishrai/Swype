@@ -58,8 +58,9 @@ const nextHandler = () => {
 
 const interestedHandler = () => {
   cards.splice(j, 1);
-  numCards--;
-  j--;
+  numCards = cards.length;
+  j = j--;
+  j %= numCards;
   fetch(window.location.href + `/markInterest?employer_id=${currentCardId}`)
     .then((response) => {
       return response.json();
