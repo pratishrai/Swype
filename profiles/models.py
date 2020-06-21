@@ -6,7 +6,7 @@ from profiles.utils import photo_path
 
 class Employee(models.Model):
     name = models.CharField(max_length=60)
-    photo = models.ImageField(upload_to=photo_path, blank=True)
+    photo = models.ImageField(upload_to='employees', blank=True)
     bio = models.TextField()
     github_url = models.CharField(max_length=300, blank=True)
     linkedin_url = models.CharField(max_length=1000, blank=True)
@@ -20,7 +20,7 @@ class Employee(models.Model):
 
 class Company(models.Model):
     name = models.CharField(max_length=60)
-    photo = models.ImageField(upload_to=photo_path, blank=True)
+    photo = models.ImageField(upload_to='company', blank=True)
     bio = models.TextField()
     website_url = models.CharField(max_length=1000, blank=True)
     linkedin_url = models.CharField(max_length=1000, blank=True)
@@ -33,7 +33,7 @@ class Company(models.Model):
 
 class Employer(models.Model):
     name = models.CharField(max_length=60)
-    photo = models.ImageField(upload_to=photo_path, blank=True)
+    photo = models.ImageField(upload_to='employers', blank=True)
     company = models.ForeignKey(Company, null=True, on_delete=models.SET_NULL)
     user = models.OneToOneField(
         get_user_model(),
