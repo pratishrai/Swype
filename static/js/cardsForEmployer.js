@@ -25,6 +25,7 @@ const parseEmployeeCard = (givenCard) => {
   value += "<h3>Bio:</h3>";
   value += `<p>${givenCard.bio}</p>`
   value += `<button class="btn btn-primary" type="button" name="button" onclick="nextHandler()">Next</button>`
+  value += `<button class="btn btn-primary" type="button" name="button" onclick="interestedHandler()">Interested 👍</button>`
   return value;
 };
 
@@ -42,10 +43,18 @@ const nextHandler = () => {
   if (numCards === 0) {
     card.innerHTML = noCardToShowHTML;
   }
-  j = (j++) % numCards;
+  j++;
+  j %= numCards;
   card.innerHTML = `
     <div class="jumbotron jumbotron-fluid bg-primary text-light">
       ${parseEmployeeCard(cards[j])}
     </div>
   `;
+};
+
+const interestedHandler = () => {
+  cards.splice(j, 1);
+  numCards--;
+  j--;
+  nextHandler();
 };
