@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +8,8 @@
     <title>Employer</title>
 </head>
 <body>
-<form method="POST">
+<div class="container">
+<form method="POST" style="padding:20px;">
     {% csrf_token %}
     <h1 class="h3 mb-3 font-weight-normal" style="margin-bottom:20px;">Profile | Employer</h1>
     <hr>
@@ -21,5 +25,7 @@
     <input name="company_photo" type="file" class="form-control" placeholder="Phote"><br>
     <button class="btn btn-lg btn-primary btn-block" type="submit" href="/dashboard/">Save</button>
 </form>
+</div>
 </body>
 </html>
+{% endblock %}
