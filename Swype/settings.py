@@ -81,11 +81,12 @@ WSGI_APPLICATION = 'Swype.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lkwebfgp',
-        'USER': 'lkwebfgp',
-        'PASSWORD': 'NDRxpTK5Xz65iF4ZBRTCC2b4orIrqNg2',
-        'HOST': 'rogue.db.elephantsql.com',
-        'PORT': '5432',
+        'NAME': 'db55j6eq9e5e10',
+        'USER': 'crazkxorhqhnzj',
+        # 
+        'PASSWORD': os.environ["DB_PASSWORD"],
+        'HOST': 'ec2-52-202-146-43.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
