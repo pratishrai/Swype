@@ -8,15 +8,13 @@
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/accounts.css' %}">
 </head>
-<body>
-<div class="loginbox">
-    <form method="POST">
+<body class="text-center">
+<div class="container" style="padding:30px;">
+    <form method="POST"  class="form-signin">
         {% csrf_token %}
-        <input name="username" type="text" placeholder="Username"><br>
-        <input name="password" type="password" placeholder="Password"><br>
-        <input type="submit"><br>
-        <hr>
-        <hr>
+        <input name="username" type="text" class="form-control" placeholder="Username"><br>
+        <input name="password" type="password" class="form-control" placeholder="Password"><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
         <div>
             {% for message in messages %}
             <h3>{{ message }}</h3>

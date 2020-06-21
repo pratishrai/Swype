@@ -11,6 +11,10 @@ def index(request):
     return render(request, 'index.html')
 
 
+def home(request):
+    return render(request, 'home.html')
+
+
 def employee(request):
     if request.method == 'POST':
         name = request.POST["name"]
@@ -19,9 +23,9 @@ def employee(request):
         github_url = request.POST["github_url"]
         linkedin_url = request.POST["linkedin_url"]
 
-        new_employer = Employer(name=name, photo=photo,
-                                bio=bio, github_url=github_url, linkedin_url=linkedin_url)
-        new_employer.save()
+        new_employee = Employee(name=name, photo=photo,
+                                bio=bio, github_url=github_url, linkedin_url=linkedin_url, user=request.user)
+        new_employee.save()
         return redirect('employee')
 
     elif request.method == 'GET':
