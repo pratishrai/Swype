@@ -13,8 +13,10 @@ const parseEmployeeCard = (givenCard) => {
   var value = `
     <h1>${givenCard.name}</h1>
   `;
+  if (givenCard.photo) {
+    value += `<img src=${givenCard.photo.url} alt='Avatar'></img>`
+  }
   if (givenCard.tags) {
-    value += `<img src="${givenCard.company.photo.url}">`
     value += `
       <h3>Skills:</h3>
       <ul>
