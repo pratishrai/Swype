@@ -33,7 +33,7 @@ class Company(models.Model):
 class Employer(models.Model):
     name = models.CharField(max_length=60)
     photo = models.ImageField(upload_to=photo_path, blank=True)
-    company = models.OneToOneField(Company, null=True, on_delete=models.SET_NULL)
+    company = models.ForeignKey(Company, null=True, on_delete=models.SET_NULL)
     user = models.OneToOneField(
         get_user_model(),
         on_delete=models.CASCADE,

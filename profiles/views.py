@@ -38,7 +38,7 @@ def employee(request):
                 cards = [get_employer_dict(employer) for employer in qs]
                 return render(request, 'cards.html', {'cards': json.dumps(cards)})
             else:
-                render(request, 'employee.html')
+                return render(request, 'employee.html')
         else:
             return redirect('/accounts/register')
 
