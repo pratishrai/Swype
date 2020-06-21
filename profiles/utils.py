@@ -11,7 +11,7 @@ def get_company_dict(company):
         'bio': company.bio,
         'website_url': getattr(company, 'website_url', None),
         'linkedin_url': getattr(company, 'linkedin_url', None),
-        'photo': get_photo_dict(company.photo) if company.photo else PLACEHOLDER_PHOTO_DICT
+        'photo': get_image_dict(company.photo) if company.photo else PLACEHOLDER_PHOTO_DICT
     }
 
 def get_employee_dict(employee):
@@ -20,7 +20,7 @@ def get_employee_dict(employee):
         'name': employee.name,
         'bio': employee.bio,
         'skills': getattr(employee, 'skills', None),
-        'photo': get_photo_dict(employee.photo) if employee.photo else PLACEHOLDER_PHOTO_DICT
+        'photo': get_image_dict(employee.photo) if employee.photo else PLACEHOLDER_PHOTO_DICT
     }
 
 def get_employer_dict(employer):
@@ -28,7 +28,7 @@ def get_employer_dict(employer):
         'id': employer.id,
         'name': employer.name,
         'company': get_company_dict(employer.company) if employer.company else None,
-        'photo': get_photo_dict(employer.photo) if employer.photo else PLACEHOLDER_PHOTO_DICT
+        'photo': get_image_dict(employer.photo) if employer.photo else PLACEHOLDER_PHOTO_DICT
     }
 
 def get_image_dict(image):
