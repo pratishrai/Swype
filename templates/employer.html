@@ -1,31 +1,37 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Employer</title>
 </head>
 <body>
-<div class="container">
-<form method="POST" style="padding:20px;">
+<h1 class="h3 mb-3 font-weight-normal" style="margin-bottom:20px;">Profile | Employer</h1>
+<hr>
+<form method="POST">
     {% csrf_token %}
-    <h1 class="h3 mb-3 font-weight-normal" style="margin-bottom:20px;">Profile | Employer</h1>
-    <hr>
-    <input name="name" type="text" class="form-control" placeholder="Full Name"><br>
-    <input name="bio" type="text" class="form-control" placeholder="Bio"><br>
-    <input name="company" type="text" class="form-control" placeholder="Company"><br>
-    <input name="company_creator" type="text" class="form-control" placeholder="Company Creator"><br>
-    <input name="company_name" type="text" class="form-control" placeholder="Company Name"><br>
-    <input name="company_bio" type="text" class="form-control" placeholder="Company Bio"><br>
-    <input name="company_website" type="url" class="form-control" placeholder="Company Website"><br>
-    <input name="linkedin_url" type="url" class="form-control" placeholder="LinkedIn URL"><br>
-    <input name="photo" type="file" class="form-control" placeholder="Phote"><br>
-    <input name="company_photo" type="file" class="form-control" placeholder="Phote"><br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit" href="/dashboard/">Save</button>
+    <fieldset>
+        <legend>Your details</legend>
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" maxlength="60" lass="form-control" id="name" name="name" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="company">The company you are recruiting for</label>
+          <select class="form-control" id="company" name="company" aria-describedby="companyHelp">
+            {% for company in companies %}
+              <option value="{{ company.id }}">{{ company.name }}</option>
+            {% endfor %}
+          </select>
+          <small id="companyHelp" class="form-text text-muted">Don't see your company? Register it <a href="/profile/registerCompany">here!</a></small>
+        </div>
+        <div class="form-group">
+          <label for="photo">Your photo</label>
+          <input type="file" class="form-control-file" id="photo" name="photo" aria-describedby="fileHelp">
+          <small id="fileHelp" class="form-text text-muted">Upload your photo!</small>
+        </div>
+    </fieldset>
+    <button class="btn btn-lg btn-primary btn-block align-center" type="submit" href="/dashboard/">Submit</button>
 </form>
 </div>
 </body>
-</html>
 {% endblock %}
