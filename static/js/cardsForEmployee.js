@@ -14,6 +14,7 @@ const parseEmployerCard = (givenCard) => {
     <h1>Name: ${givenCard.name}</h1>
   `;
   if (givenCard.company) {
+    value += `<img src="${givenCard.company.photo.url}">`
     value += `<h3>Company: ${givenCard.company.name}</h3>`
     value += `
       <h3>Bio: </h3>

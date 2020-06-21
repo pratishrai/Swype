@@ -13,6 +13,7 @@ const parseEmployeeCard = (givenCard) => {
   var value = `
     <h1>${givenCard.name}</h1>
   `;
+  value += `<img src="${givenCard.company.photo.url}">`
   if (givenCard.tags) {
     value += `
       <h3>Skills:</h3>
