@@ -19,6 +19,5 @@ def get_employee_dict(employee):
 def get_employer_dict(employer):
     return {
         'name': employer.name,
-        'bio': employer.bio,
         'company': get_company_dict(employer.company or {})
     }
