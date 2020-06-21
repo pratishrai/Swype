@@ -14,12 +14,12 @@
     {% csrf_token %}
     <h1 class="h3 mb-3 font-weight-normal" style="margin-bottom:20px;">Register</h1>
     <hr>
-    <input name="first_name" type="text" class="form-control" placeholder="First Name"><br>
-    <input name="last_name" type="text" class="form-control" placeholder="Last Name"><br>
-    <input name="username" type="text" class="form-control" placeholder="Username"><br>
-    <input name="email" type="email" class="form-control" placeholder="Email"><br>
-    <input name="password1" type="password" class="form-control" placeholder="Password"><br>
-    <input name="password2" type="password" class="form-control" placeholder="Confirm Password"><br>
+    <input name="first_name" type="text" class="form-control" placeholder="First Name" required><br>
+    <input name="last_name" type="text" class="form-control" placeholder="Last Name" required><br>
+    <input name="username" type="text" class="form-control" placeholder="Username" required><br>
+    <input name="email" type="email" class="form-control" placeholder="Email" required><br>
+    <input name="password1" type="password" class="form-control" placeholder="Password" required><br>
+    <input name="password2" type="password" class="form-control" placeholder="Confirm Password" required><br>
     <button class="btn btn-lg btn-primary btn-block" type="submit" href="/newuser/">Register</button>
 </form>
 </div>

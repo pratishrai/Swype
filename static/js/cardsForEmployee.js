@@ -1,7 +1,8 @@
 const card = document.getElementById('card');
 var numCards = cards.length;
+var currentCardId = null;
 
-var j = 1;
+var j = 0;
 
 const noCardToShowHTML = `
   <h3>No more cards to show :/</h3>
@@ -10,7 +11,7 @@ const noCardToShowHTML = `
 
 const parseEmployerCard = (givenCard) => {
   var value = `
-    <h1>${givenCard.name}</h1>
+    <h1>Name: ${givenCard.name}</h1>
   `;
   if (givenCard.company) {
     value += `<h3>Company: ${givenCard.company.name}</h3>`
@@ -26,7 +27,9 @@ const parseEmployerCard = (givenCard) => {
     }
     value += `</ul>`;
   }
-  value += `<button class="btn btn-primary" type="button" name="button" onclick="nextHandler()">Next</button>`
+  value += `<button class="btn btn-secondary" type="button" name="button" onclick="nextHandler()">Next</button>`
+  value += `<button class="btn btn-success" type="button" name="button" onclick="interestedHandler()">Interested 👍</button>`
+  currentCardId = givenCard.id;
   return value;
 };
 
@@ -44,10 +47,25 @@ const nextHandler = () => {
   if (numCards === 0) {
     card.innerHTML = noCardToShowHTML;
   }
-  j = (j++) % numCards;
+  j++;
+  j %= numCards;
   card.innerHTML = `
     <div class="jumbotron jumbotron-fluid bg-primary text-light">
       ${parseEmployerCard(cards[j])}
     </div>
   `;
+};
+
+const interestedHandler = () => {
+  cards.splice(j, 1);
+  numCards--;
+  j--;
+  fetch(window.location.href + `/markInterest?employer_id=${currentCardId}`)
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      return error;
+    });
+  nextHandler();
 };

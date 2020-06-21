@@ -11,6 +11,7 @@ def get_company_dict(company):
 
 def get_employee_dict(employee):
     return {
+        'id': employee.id,
         'name': employee.name,
         'bio': employee.bio,
         'skills': getattr(employee, 'skills', None),
@@ -18,6 +19,7 @@ def get_employee_dict(employee):
 
 def get_employer_dict(employer):
     return {
+        'id': employer.id,
         'name': employer.name,
-        'company': get_company_dict(employer.company or {})
+        'company': get_company_dict(employer.company) if employer.company else None
     }

@@ -15,6 +15,7 @@ class Employee(models.Model):
         on_delete=models.CASCADE,
         related_name="employee_profile",
     )
+    interested_employers = models.ManyToManyField("profiles.Employer", related_name="interested_in")
 
 
 class Company(models.Model):
@@ -39,6 +40,7 @@ class Employer(models.Model):
         on_delete=models.CASCADE,
         related_name="employer_profile",
     )
+    interested_employees = models.ManyToManyField(Employee, related_name="interested_in")
 
 
 class Tag(models.Model):
